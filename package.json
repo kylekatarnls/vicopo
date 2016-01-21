@@ -1,0 +1,26 @@
+{
+  "name": "vicopo",
+  "version": "1.0.3",
+  "description": "API HTTP et Script pour trouver les villes à partir d'un code postal et code postaux à partir d'une ville",
+  "main": "slick/slick.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kylekatarnls/vicopo.git"
+  },
+  "keywords": [
+    "ville",
+    "code",
+    "postal",
+    "code-postal",
+    "jquery-plugin",
+    "ecosystem:jquery"
+  ],
+  "author": "kylekatarnls",
+  "license": "GNU GPL v3.0",
+  "bugs": {
+    "url": "https://github.com/kylekatarnls/vicopo/issues"
+  },
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  }
+}
