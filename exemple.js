@@ -1,4 +1,4 @@
-var vicopo = require('./index')();
+var vicopo = require('vicopo')();
 
 vicopo(75001, function (err, answear) {
 	if (err) {
@@ -7,7 +7,7 @@ vicopo(75001, function (err, answear) {
 	console.log(answear[0].city); // PARIS-1ER-ARRONDISSEMENT
 });
 
-var secureVicopo = require('./index')('https');
+var secureVicopo = require('vicopo')('https');
 
 secureVicopo('paris', function (err, answear) {
 	if (err) {
