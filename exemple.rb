@@ -1,4 +1,4 @@
-require './lib/vicopo'
+require 'vicopo'
 
 puts Vicopo.http 75001
 
