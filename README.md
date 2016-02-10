@@ -105,4 +105,20 @@ Les méthodes `$.vicopo()`, `$.codePostal()` et `$.ville()` prennent en premier 
 }
 ```
 
+## Plugin node.js
+
+Vicopo est disponible sous node.js directement via require('vicopo') :
+
+```javascript
+var ville = 'Lille';
+var vicopo = require('Lille');
+vicopo(ville, function (err, cities) {
+    if (err) {
+        throw err;
+    } else {
+        console.log(cities);
+    }
+});
+```
+
 Plus d'options sur http://vicopo.selfbuild.fr/
