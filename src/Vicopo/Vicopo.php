@@ -7,7 +7,7 @@ class Vicopo {
 	static protected function get($url, $search) {
 		$vicopoUrl = $url . urlencode($ville);
 		$json = @json_decode(file_get_contents($vicopoUrl));
-		if (empty($json->cities)) {
+		if (!is_object($json) || !isset($json->cities)) {
 			throw new Exception("No valid answear found", 1);
 		}
 		return $json->cities;
