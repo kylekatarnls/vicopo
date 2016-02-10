@@ -13,8 +13,7 @@
     "code",
     "postal",
     "code-postal",
-    "jquery-plugin",
-    "ecosystem:jquery"
+    "jquery-plugin"
   ],
   "author": {
       "name": "kylekatarnls",
@@ -28,6 +27,7 @@
   "bugs": {
     "url": "https://github.com/kylekatarnls/vicopo/issues"
   },
+  "homepage": "http://vicopo.selfbuild.fr",
   "dependencies": {
     "jquery": ">=1.7.2"
   }
