@@ -111,7 +111,7 @@ Vicopo est disponible sous node.js directement via require('vicopo') :
 
 ```javascript
 var ville = 'Lille';
-var vicopo = require('Lille');
+var vicopo = require('vicopo')('http');
 vicopo(ville, function (err, cities) {
     if (err) {
         throw err;
