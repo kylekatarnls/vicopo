@@ -15,13 +15,13 @@ module.exports = function (protocol) {
 		transport.get(url + encodeURIComponent(search), function (res) {
 			var data = '';
 			res.setEncoding('utf8');
-		  res.on('data', (chunk) => {
-		    data += chunk;
-		  });
-		  res.on('end', () => {
+			res.on('data', function (chunk) {
+				data += chunk;
+			});
+			res.on('end', function () {
 				var result;
 				try {
-			    result = JSON.parse(data);
+					result = JSON.parse(data);
 				} catch(e) {
 					return done(new Error('Cannot parse Vicopo answear:\n' + e + '\n' + data));
 				}
@@ -30,7 +30,7 @@ module.exports = function (protocol) {
 				} else {
 					done(new Error('The answear should contains a cities list:\n' + data));
 				}
-		  });
+			});
 		})
 		.on('error', done);
 	};
