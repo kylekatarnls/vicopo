@@ -1,12 +1,10 @@
 /**
  * Vicopo
  * @author https://github.com/kylekatarnls
- * http://vicopo.selfbuild.fr
+ * https://vicopo.selfbuild.fr
  */
 jQuery(function ($) {
-	var _host = ~(location.protocol + '').indexOf('s')
-		? 'https://www.selfbuild.fr/vicopo'
-		: 'http://vicopo.selfbuild.fr';
+	var _host = location.protocol + '//vicopo.selfbuild.fr';
 	var _cache = {};
 	var _sort = function (a, b) {
 		return a.city - b.city;
@@ -106,9 +104,9 @@ jQuery(function ($) {
 		if($target.data('vicopo-value') !== _input) {
 			var _$targets = $target.data('vicopo-value', _input)
 			.vicopoTargets().each(function () {
-				var $repeater = $(this).hide().vicopoClean();
+				$(this).hide().vicopoClean();
 			});
-			if(_input.length) {
+			if(_$targets.length && _input.length) {
 				$.vicopo(_input, function (_check, _cities) {
 					if(_check === _input) {
 						_$targets.each(function () {
