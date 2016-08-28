@@ -4,8 +4,8 @@ namespace Vicopo;
 
 class Vicopo {
 
-	static protected function get($url, $search) {
-		$vicopoUrl = $url . urlencode($ville);
+	static protected function get($search, $protocol = 'https') {
+		$vicopoUrl = $protocol . '://vicopo.selfbuild.fr/search/' . urlencode($ville);
 		$json = @json_decode(file_get_contents($vicopoUrl));
 		if (!is_object($json) || !isset($json->cities)) {
 			throw new Exception("No valid answear found", 1);
@@ -14,10 +14,10 @@ class Vicopo {
 	}
 
 	static public function http($search) {
-		return static::get('http://vicopo.selfbuild.fr/search/', $search);
+		return static::get($search, 'http');
 	}
 
 	static public function https($search) {
-		return static::get('https://www.selfbuild.fr/vicopo/search/', $search);
+		return static::get($search, 'https');
 	}
 }

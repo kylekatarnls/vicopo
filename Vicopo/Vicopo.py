@@ -2,10 +2,12 @@ import urllib, json
 
 class Vicopo:
     @staticmethod
-    def http(search):
-        response = urllib.urlopen('http://vicopo.selfbuild.fr/search/' + str(search))
+    def get(search, protocol = 'https'):
+        response = urllib.urlopen(protocol + '://vicopo.selfbuild.fr/search/' + str(search))
         return json.loads(response.read())
     @staticmethod
+    def http(search):
+        return Vicopo.get(search, 'http')
+    @staticmethod
     def https(search):
-        response = urllib.urlopen('https://www.selfbuild.fr/vicopo/search/' + str(search))
-        return json.loads(response.read())
+        return Vicopo.get(search, 'https')

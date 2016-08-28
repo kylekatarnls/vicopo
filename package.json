@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/kylekatarnls/vicopo/issues"
   },
-  "homepage": "http://vicopo.selfbuild.fr",
+  "homepage": "https://vicopo.selfbuild.fr",
   "dependencies": {
     "jquery": ">=1.7.2"
   }

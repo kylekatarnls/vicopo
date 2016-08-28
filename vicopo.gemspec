@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ["kylekatarnls"]
   s.email       = 'vicopo@selfbuild.fr'
   s.files       = ["lib/vicopo.rb"]
-  s.homepage    = 'http://vicopo.selfbuild.fr'
+  s.homepage    = 'https://vicopo.selfbuild.fr'
   s.license     = 'GNU GPL v3.0'
 end

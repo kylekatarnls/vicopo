@@ -1,11 +1,11 @@
 module.exports = function (protocol) {
-	protocol = protocol || 'http';
-	var url = 'http://vicopo.selfbuild.fr/search/';
+	protocol = protocol || 'https';
+	var url = 'https://vicopo.selfbuild.fr/search/';
 	switch (protocol) {
 		case 'https':
-			url = 'https://www.selfbuild.fr/vicopo/search/';
 			break;
 		case 'http':
+			url = 'http://vicopo.selfbuild.fr/search/';
 			break;
 		default:
 			throw new Error(protocol + ' protocol not supported');
