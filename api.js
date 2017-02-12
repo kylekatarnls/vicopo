@@ -4,7 +4,7 @@
  * https://vicopo.selfbuild.fr
  */
 jQuery(function ($) {
-	var _host = location.protocol + '//vicopo.selfbuild.fr';
+	var _host = (location.protocol === 'http:' ? 'http:' : 'https:') + '//vicopo.selfbuild.fr';
 	var _cache = {};
 	var _sort = function (a, b) {
 		return a.city - b.city;
