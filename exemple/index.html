@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>VICOPO - API Ville et Code postal</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://vicopo.selfbuild.fr/favicon.ico">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Oswald:700|Titillium+Web|Fira+Mono">
+    <link rel="stylesheet" type="text/css" href="https://vicopo.selfbuild.fr/index.css">
+</head>
+<body>
+    <header>
+        <img src="https://vicopo.selfbuild.fr/city.jpg" alt="VICOPO">
+        <h1>
+            VICOPO
+        </h1>
+    </header>
+    <h2>
+        API HTTP et Script pour trouver les villes à partir d'un code postal et code postaux à partir d'une ville
+    </h2>
+    <p>
+        Vicopo est un moyen léger et rapide rechercher une ville française et implémenter des propositions à
+        la volée, l'autocomplétion d'un champ de ville ou de code postal et la conversion de l'un vers l'autre.
+    </p>
+    <p>
+        Testez-la ci-dessous en tapant le début d'un code postal ou du nom d'une ville&nbsp;:
+    </p>
+    <section>
+        <div class="half">
+            <input id="code" placeholder="Code postal" autocomplete="off" autofocus>
+        </div>
+        <div class="half">
+            <input id="city" placeholder="Ville" autocomplete="off">
+        </div>
+    </section>
+    <div id="output"></div>
+    <footer>
+        <a href="https://github.com/kylekatarnls/vicopo">vicopo</a>
+        &nbsp; | &nbsp;
+        <a href="https://github.com/kylekatarnls">@kylekatarnls</a>
+    </footer>
+    <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../api.min.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+</body>
+</html>

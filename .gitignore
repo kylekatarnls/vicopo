@@ -1,4 +1,5 @@
 *.gem
 *.egg-info
 *.pyc
-dist
+.idea
+node_modules/

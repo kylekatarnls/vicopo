@@ -30,7 +30,15 @@
     "url": "https://github.com/kylekatarnls/vicopo/issues"
   },
   "homepage": "https://vicopo.selfbuild.fr",
+  "scripts": {
+    "build": "npm install && uglifyjs api.js -o api.min.js --source-map url=api.min.js.map",
+    "demo": "npm install && node exemple/open.js"
+  },
   "dependencies": {
     "jquery": ">=1.7.2"
+  },
+  "devDependencies": {
+    "opn": "^5.0.0",
+    "uglify-js": "^3.0.9"
   }
 }

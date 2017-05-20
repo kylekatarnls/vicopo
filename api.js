@@ -42,9 +42,9 @@ jQuery(function ($) {
 				} else {
 					var _data = {};
 					_data[_name] = _input;
-					return $.getJSON(_host, _data, function (_answear) {
-						_cache[_name][_input] = _answear.cities;
-						_done(_answear.input, $.vicopoPrepare(_answear.cities || []), _name);
+					return $.getJSON(_host, _data, function (_answer) {
+						_cache[_name][_input] = _answer.cities;
+						_done(_answer.input, $.vicopoPrepare(_answer.cities || []), _name);
 					});
 				}
 			} else {
@@ -56,7 +56,7 @@ jQuery(function ($) {
 		vicopoClean: function () {
 			return $(this).each(function () {
 				var _removeList = [];
-				for(var $next = $(this).next(); $next.hasClass('vicopo-answear'); $next = $next.next()) {
+				for(var $next = $(this).next(); $next.hasClass('vicopo-answer'); $next = $next.next()) {
 					_removeList.push($next[0]);
 				}
 				$(_removeList).remove();
@@ -116,7 +116,7 @@ jQuery(function ($) {
 							var _$cities = [];
 							$.each(_cities, function () {
 								var $city = _$template.clone();
-								$city.addClass('vicopo-answear');
+								$city.addClass('vicopo-answer');
 								$city.find('[data-vicopo-code-postal]').text(this.code);
 								$city.find('[data-vicopo-ville]').text(this.city);
 								$city.find('[data-vicopo-val-code-postal]').val(this.code);
