@@ -1,7 +1,7 @@
 {
   "name": "vicopo",
   "title": "vicopo",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "API HTTP et Script pour trouver les villes à partir d'un code postal et code postaux à partir d'une ville",
   "main": "slick/slick.js",
   "repository": {
