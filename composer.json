@@ -3,6 +3,7 @@
     "description": "API HTTP et Script pour trouver les villes à partir d'un code postal et code postaux à partir d'une ville",
     "homepage": "https://vicopo.selfbuild.fr",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.0"
     },

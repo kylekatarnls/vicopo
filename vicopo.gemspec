@@ -8,5 +8,5 @@ Gem::Specification.new do |s|
   s.email       = 'vicopo@selfbuild.fr'
   s.files       = ["lib/vicopo.rb"]
   s.homepage    = 'https://vicopo.selfbuild.fr'
-  s.license     = 'GNU GPL v3.0'
+  s.license     = 'MIT'
 end

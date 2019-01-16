@@ -19,13 +19,7 @@
     "name": "kylekatarnls",
     "url": "https://github.com/kylekatarnls"
   },
-  "license": "GNU GPL v3.0",
-  "licenses": [
-    {
-      "type": "GNU GPL v3.0",
-      "url": "https://github.com/kylekatarnls/vicopo/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kylekatarnls/vicopo/issues"
   },
