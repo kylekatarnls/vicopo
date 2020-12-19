@@ -19,7 +19,7 @@ https://vicopo.selfbuild.fr/
   </li>
 </ul>
 ```
-[Voir la démonstration](https://jsfiddle.net/KyleKatarn/y27x72ka/6/)
+[Voir la démonstration](https://jsfiddle.net/KyleKatarn/y27x72ka/40/)
 
 Ajoutez l'attribut data-vicopo à un élément et passez-lui en paramètre un sélecteur qui pointera vers un champ(`<input>`, `<select>` ou `<textarea>`). Quand la valeur du champs change, l'élément sera duppliqué autant de fois qu'il y a de villes commençant par la valeur tapée ou dont le code postal commence par la valeur tapée (la recherche commence à partir de 2 caractères tapés).
 
@@ -41,7 +41,7 @@ $('#ville').keyup(function (e) {
   }
 });
 ```
-[Voir la démonstration](https://jsfiddle.net/KyleKatarn/48uuL3v5/3/)
+[Voir la démonstration](https://jsfiddle.net/KyleKatarn/48uuL3v5/15/)
 
 Lors de l'appui sur `Entrée`, on récupère la première ville et on l'applique comme nouvelle valeur du champ.
 
@@ -79,7 +79,7 @@ $('#villes').click(function () {
   });
 });
 ```
-[Voir la démonstration](https://jsfiddle.net/KyleKatarn/ny8k9ya6/6/)
+[Voir la démonstration](https://jsfiddle.net/KyleKatarn/ny8k9ya6/16/)
 
 Les méthodes `$.vicopo()`, `$.codePostal()` et `$.ville()` prennent en premier paramètre le code postal ou la ville (partiel ou entier) recherché et en second paramètre une fonction de callback appelée avec le terme recherché en premier paramètre, les villes trouvées en second et en troisième 'code' pour une recherche de code postal ou 'city' pour une recherche de ville.
 
