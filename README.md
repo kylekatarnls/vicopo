@@ -91,17 +91,17 @@ Les méthodes `$.vicopo()`, `$.codePostal()` et `$.ville()` prennent en premier 
 | HTTPS     | https://vicopo.selfbuild.fr/cherche/680               |
 ```json
 {
-	"input": "680",
-	"cities": [
-		{
-			"code": 68040,
-			"city": "INGERSHEIM"
-		},
-		{
-			"code": 68000,
-			"city": "COLMAR"
-		}
-	]
+    "input": "680",
+    "cities": [
+        {
+            "code": 68040,
+            "city": "INGERSHEIM"
+        },
+        {
+            "code": 68000,
+            "city": "COLMAR"
+        }
+    ]
 }
 ```
 
