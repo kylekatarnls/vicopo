@@ -37,16 +37,19 @@ jQuery(function ($) {
             if(_input.length > 1) {
                 _input = _input.trim();
                 _cache[_name] = _cache[_name] || {};
+
                 if(_cache[_name][_input]) {
                     _done(_input, $.vicopoPrepare(_cache[_name][_input] || []), _name);
-                } else {
-                    var _data = {};
-                    _data[_name] = _input;
-                    return $.getJSON(_host, _data, function (_answer) {
-                        _cache[_name][_input] = _answer.cities;
-                        _done(_answer.input, $.vicopoPrepare(_answer.cities || []), _name);
-                    });
+
+                    return;
                 }
+
+                var _data = {};
+                _data[_name] = _input;
+                return $.getJSON(_host, _data, function (_answer) {
+                    _cache[_name][_input] = _answer.cities;
+                    _done(_answer.input, $.vicopoPrepare(_answer.cities || []), _name);
+                });
             } else {
                 _done(_input, [], _name);
             }
@@ -76,6 +79,13 @@ jQuery(function ($) {
         },
         vicopoTarget: function () {
             return $(this).vicopoTargets().first();
+        },
+        vicopoFillField: function (_pattern, _city, _code) {
+            return $(this).val(
+                _pattern
+                    .replace(/(city|ville)/ig, _city)
+                    .replace(/(zipcode|code([\s_-]?postal)?)/ig, _code)
+            ).vicopoTargets().vicopoClean();
         },
         getVicopo: function (_method, _done) {
             return $(this).keyup(function () {
@@ -113,6 +123,7 @@ jQuery(function ($) {
                         _$targets.each(function () {
                             var $repeater = $(this).vicopoClean();
                             var _$template = $repeater.clone();
+                            var _click = _$template.data('vicopo-click');
                             _$template.show().removeAttr('data-vicopo');
                             var _$cities = [];
                             $.each(_cities, function () {
@@ -125,13 +136,15 @@ jQuery(function ($) {
                                 $city.find('[data-vicopo-val-code-postal]').val(_code);
                                 $city.find('[data-vicopo-val-ville]').val(_city);
 
-                                if (_fill) {
+                                if (_fill || _click) {
                                     $city.click(function () {
-                                        $target.val(
-                                            _fill
-                                                .replace(/(city|ville)/ig, _city)
-                                                .replace(/(zipcode|code([\s_-]?postal)?)/ig, _code)
-                                        ).vicopoTargets().vicopoClean();
+                                        if (_fill) {
+                                            $target.vicopoFillField(_fill, _city, _code);
+                                        }
+
+                                        $.each(_click, function (_selector, _pattern) {
+                                            $(_selector).vicopoFillField(_pattern, _city, _code);
+                                        });
                                     });
                                 }
 
