@@ -19,6 +19,18 @@ https://vicopo.selfbuild.fr/
   </li>
 </ul>
 ```
+
+Placez le code ci-dessus n'importe où sur votre page,
+et insérez le script après jQuery (par exemple avant `</body>`) :
+
+```html
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="vicopo.min.js"></script>
+```
+
 [Voir la démonstration](https://jsfiddle.net/KyleKatarn/y27x72ka/40/)
 
 Ajoutez l'attribut data-vicopo à un élément et passez-lui en paramètre un sélecteur qui pointera vers un champ(`<input>`, `<select>` ou `<textarea>`). Quand la valeur du champs change, l'élément sera duppliqué autant de fois qu'il y a de villes commençant par la valeur tapée ou dont le code postal commence par la valeur tapée (la recherche commence à partir de 2 caractères tapés).
