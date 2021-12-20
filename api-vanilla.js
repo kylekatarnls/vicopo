@@ -148,7 +148,9 @@
             });
         },
         hasClass: function (className) {
-            return (' ' + this.nodes[0] + ' ').indexOf((' ' + className + ' ')) !== -1;
+            return this.nodes.length > 0
+                && this.nodes[0]
+                && (' ' + this.nodes[0].className + ' ').indexOf(' ' + className + ' ') !== -1;
         },
         addClass: function (className) {
             return this.each(function (elt) {
@@ -170,8 +172,10 @@
                 return this.nodes[0].value;
             }
 
+            var value = arguments[0];
+
             return this.each(function (elt) {
-                elt.value = arguments[0];
+                elt.value = value;
             });
         },
         text: function () {
@@ -179,8 +183,10 @@
                 return this.nodes[0].innerText;
             }
 
+            var text = arguments[0];
+
             return this.each(function (elt) {
-                elt.innerText = arguments[0];
+                elt.innerText = text;
             });
         },
         hide: function () {
@@ -198,8 +204,15 @@
                 elt.removeAttribute(key);
             });
         },
+        after: function (nodes) {
+            return this.each(function (elt) {
+                for (var i = nodes.length - 1; i >= 0; i--) {
+                    elt.parentNode.insertBefore(nodes[i], elt.nextSibling);
+                }
+            });
+        },
         on: function (events, callback) {
-            this.each(function (elt) {
+            return this.each(function (elt) {
                 events.forEach(function (event) {
                     if (elt.addEventListener) {
                         elt.addEventListener(event, callback, false);
@@ -218,17 +231,17 @@
             });
         },
         keyup: function (callback) {
-            this.on(['keyup', 'change'], callback);
+            return this.on(['keyup', 'change'], callback);
         },
         click: function (callback) {
-            this.on(['click'], callback);
+            return this.on(['click'], callback);
         },
         vicopoClean: function () {
             return this.each(function (elt) {
                 var _removeList = [];
 
-                for(var $next = $(elt).next(); $next.hasClass('vicopo-answer'); $next = $next.next()) {
-                    _removeList.push($next[0]);
+                for (var $next = $(elt).next(); $next.hasClass('vicopo-answer'); $next = $next.next()) {
+                    _removeList.push($next.nodes[0]);
                 }
 
                 $(_removeList).remove();
@@ -250,33 +263,32 @@
             return $(_targets);
         },
         vicopoTarget: function () {
-            return $(this).vicopoTargets().nodes[0];
+            return this.vicopoTargets().nodes[0];
         },
         vicopoFillField: function (_pattern, _city, _code) {
-            return $(this).val(
+            return this.val(
                 _pattern
                     .replace(/(city|ville)/ig, _city)
                     .replace(/(zipcode|code([\s_-]?postal)?)/ig, _code)
             ).vicopoTargets().vicopoClean();
         },
         getVicopo: function (_method, _done) {
-            return $(this).keyup(function () {
-                var $input = $(this);
-                _method($input.val(), function (_input, _cities, _name) {
-                    if(_input === $input.val()) {
+            return this.keyup(function (elt) {
+                _method(elt.value, function (_input, _cities, _name) {
+                    if(_input == elt.value) {
                         _done(_cities, _name, _input);
                     }
                 });
             });
         },
         vicopo: function (_done) {
-            return $(this).getVicopo(vicopo, _done);
+            return this.getVicopo(vicopo, _done);
         },
         codePostal: function (_done) {
-            return $(this).getVicopo(codePostal, _done);
+            return this.getVicopo(codePostal, _done);
         },
         ville: function (_done) {
-            return $(this).getVicopo(ville, _done);
+            return this.getVicopo(ville, _done);
         }
     };
 
@@ -299,35 +311,38 @@
                 vicopo(_input, function (_check, _cities) {
                     if(_check === _input) {
                         _$targets.each(function (elt) {
-                            var repeater = $(elt).vicopoClean().nodes[0];
-                            var _$template = $(repeater.cloneNode(true));
+                            var $repeater = $(elt).vicopoClean();
+                            var _$template = $($repeater.nodes[0].cloneNode(true));
                             var _click = _$template.data('vicopo-click');
                             _$template.show().removeAttr('data-vicopo');
+                            var _$cities = [];
 
-                            $(_cities).each(function (_city, _code) {
+                            $(_cities).each(function (_result) {
                                 var $city = $(_$template.nodes[0].cloneNode(true));
                                 $city.addClass('vicopo-answer');
-                                $city.find('[data-vicopo-code-postal]').text(_code);
-                                $city.find('[data-vicopo-ville]').text(_city);
-                                $city.find('[data-vicopo-val-code-postal]').val(_code);
-                                $city.find('[data-vicopo-val-ville]').val(_city);
+                                $city.find('[data-vicopo-code-postal]').text(_result.code);
+                                $city.find('[data-vicopo-ville]').text(_result.city);
+                                $city.find('[data-vicopo-val-code-postal]').val(_result.code);
+                                $city.find('[data-vicopo-val-ville]').val(_result.city);
 
                                 if (_fill || _click) {
                                     $city.click(function () {
                                         if (_fill) {
-                                            $target.vicopoFillField(_fill, _city, _code);
+                                            $target.vicopoFillField(_fill, _result.city, _result.code);
                                         }
 
                                         if (typeof _click === 'object') {
                                             for (var _selector in _click) {
-                                                $(_selector).vicopoFillField(_click[_selector], _city, _code);
+                                                $(_selector).vicopoFillField(_click[_selector], _result.city, _result.code);
                                             }
                                         }
                                     });
                                 }
 
-                                repeater.appendChild($city.nodes[0]);
+                                _$cities.push($city.nodes[0]);
                             });
+
+                            $repeater.after(_$cities);
                         });
                     }
                 });
