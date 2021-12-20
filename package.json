@@ -25,7 +25,7 @@
   },
   "homepage": "https://vicopo.selfbuild.fr",
   "scripts": {
-    "build": "npm install && uglifyjs api.js -o api.min.js --source-map url=api.min.js.map",
+    "build": "npm install && uglifyjs api.js -o api.min.js --source-map url=api.min.js.map && uglifyjs api-vanilla.js -o api-vanilla.min.js --source-map url=api-vanilla.min.js.map",
     "demo": "npm install && node exemple/open.js"
   },
   "dependencies": {
