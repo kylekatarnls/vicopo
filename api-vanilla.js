@@ -116,6 +116,18 @@
         return new NodeList(typeof nodes === 'string' ? document.querySelectorAll(nodes) : nodes);
     }
 
+    function matchesSelector(elt, selector) {
+        if (elt.matches) {
+            return elt.matches(selector);
+        }
+
+        if (elt.webkitMatchesSelector) {
+            return elt.webkitMatchesSelector(selector);
+        }
+
+        return [].slice.call(a.parentNode.querySelectorAll(selector)).indexOf(elt) !== -1;
+    }
+
     var methods = {
         each: function (callback) {
             [].forEach.call(this.nodes, callback);
@@ -160,6 +172,9 @@
         find: function (selector) {
             var _elements = [];
             this.each(function (elt) {
+                if (matchesSelector(elt, selector)) {
+                    _elements.push(elt);
+                }
                 $(elt.querySelectorAll(selector)).each(function (foundElement) {
                     _elements.push(foundElement);
                 });

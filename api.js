@@ -131,10 +131,15 @@ jQuery(function ($) {
                                 var _code = this.code;
                                 var _city = this.city;
                                 $city.addClass('vicopo-answer');
-                                $city.find('[data-vicopo-code-postal]').text(_code);
-                                $city.find('[data-vicopo-ville]').text(_city);
-                                $city.find('[data-vicopo-val-code-postal]').val(_code);
-                                $city.find('[data-vicopo-val-ville]').val(_city);
+
+                                const findInCity = function (selector) {
+                                    return $city.find(selector).add($city.filter(selector));
+                                };
+
+                                findInCity('[data-vicopo-code-postal]').text(_code);
+                                findInCity('[data-vicopo-ville]').text(_city);
+                                findInCity('[data-vicopo-val-code-postal]').val(_code);
+                                findInCity('[data-vicopo-val-ville]').val(_city);
 
                                 if (_fill || _click) {
                                     $city.click(function () {
