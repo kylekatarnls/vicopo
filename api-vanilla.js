@@ -311,7 +311,7 @@
         NodeList.prototype[name] = methods[name];
     }
 
-    function checkValue(element) {
+    function checkValue(element, context) {
         var $target = $(element);
         var _input = $target.val();
 
@@ -328,6 +328,7 @@
                         _$targets.each(function (elt) {
                             var $repeater = $(elt).vicopoClean();
                             var _$template = $($repeater.nodes[0].cloneNode(true));
+                            var _willShow = !context || !context.init || ['', true].indexOf(_$template.data('vicopo-hide-on-start')) === -1;
                             var _click = _$template.data('vicopo-click');
                             _$template.show().removeAttr('data-vicopo');
                             var _$cities = [];
@@ -357,7 +358,9 @@
                                 _$cities.push($city.nodes[0]);
                             });
 
-                            $repeater.after(_$cities);
+                            if (_willShow) {
+                                $repeater.after(_$cities);
+                            }
                         });
                     }
                 });
@@ -369,7 +372,9 @@
     $(document).keyup(function (event) {
         checkValue(event.target || event.srcElement);
     });
-    $(_fields).each(checkValue);
+    $(_fields).each(function (element) {
+        checkValue(element, {init: true});
+    });
 
     w.vicopo = {
         checkValue: checkValue,

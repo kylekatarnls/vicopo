@@ -108,7 +108,7 @@ jQuery(function ($) {
         }
     });
     var _fields = 'input, textarea, select';
-    $(document).on('keyup change', _fields, function () {
+    $(document).on('keyup change', _fields, function (_, context) {
         var $target = $(this);
         var _input = $target.val();
         if($target.data('vicopo-value') !== _input) {
@@ -123,6 +123,7 @@ jQuery(function ($) {
                         _$targets.each(function () {
                             var $repeater = $(this).vicopoClean();
                             var _$template = $repeater.clone();
+                            var _willShow = !context || !context.init || ['', true].indexOf(_$template.data('vicopo-hide-on-start')) === -1;
                             var _click = _$template.data('vicopo-click');
                             _$template.show().removeAttr('data-vicopo');
                             var _$cities = [];
@@ -155,12 +156,15 @@ jQuery(function ($) {
 
                                 _$cities.push($city);
                             });
-                            $repeater.after(_$cities);
+
+                            if (_willShow) {
+                                $repeater.after(_$cities);
+                            }
                         });
                     }
                 });
             }
         }
     });
-    $(_fields).trigger('keyup');
+    $(_fields).trigger('keyup', {init: true});
 });
